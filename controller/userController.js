@@ -134,6 +134,8 @@ const loginController = async (req, res) => {
     const options = {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       httpOnly: true,
+      secure:true,
+      sameSite:None
     };
 
     var { email, name, id, role, _id } = user;
@@ -283,6 +285,8 @@ const logout = async (req, res) => {
     .cookie("token", "", {
       httpOnly: true,
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      secure:true,
+      sameSite:None
     })
     .json({
       message: "Logout successfull!",
