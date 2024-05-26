@@ -115,7 +115,7 @@ const loginController = async (req, res) => {
     // check user password || compare password:
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(500).send({
+      return res.status(401).send({
         success: false,
         message: "Invalid credentials",
       });
@@ -135,7 +135,7 @@ const loginController = async (req, res) => {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       httpOnly: true,
       secure:true,
-      sameSite:None
+      sameSite:"None"
     };
 
     var { email, name, id, role, _id } = user;
@@ -286,7 +286,7 @@ const logout = async (req, res) => {
       httpOnly: true,
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
       secure:true,
-      sameSite:None
+      sameSite:"None"
     })
     .json({
       message: "Logout successfull!",
